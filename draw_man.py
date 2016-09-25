@@ -1,5 +1,5 @@
 from turtle import Turtle
-defaul_scale=10
+defaul_scale=25
 
 def init_draw_man():
     global t, x_current,  y_current, drawman_scale
@@ -14,7 +14,6 @@ def init_draw_man():
 def drawman_scale(scale):
     global _drawman_scale
     _drawman_scale = scale
-
 
 
 def test_drawman():
@@ -46,9 +45,42 @@ def to_point(x,y):
     y_current = y
     t.goto(x_current*_drawman_scale,y_current*_drawman_scale)
 
+
+def draw_setka():
+    t.speed(0)
+    t.pencolor("grey")
+    pen_up()
+    n=600//_drawman_scale
+    t.goto(-300,0)
+    for x in range(-300,301,_drawman_scale):
+        t.goto(x,300)
+        pen_down()
+        t.goto(x,-300)
+        pen_up()
+    for y in range(-300,301,_drawman_scale):
+        t.goto(300,y)
+        pen_down()
+        t.goto(-300,y)
+        pen_up()
+    t.pencolor("black")
+    t.pensize(3)
+    t.goto(0,-300)
+    pen_down()
+    t.goto(0,300)
+    pen_up()
+    t.goto(-300,0)
+    pen_down()
+    t.goto(300,0)
+    pen_up()
+    t.goto(-15,-300)
+    n = int(-n//2)
+    for y in range(-300+_drawman_scale,301-_drawman_scale, _drawman_scale):
+        t.write(n)
+        t.goto(-15,y)
+        n += 1
 init_draw_man()
 if __name__ == '__main__':
     import time
-    test_drawman()
+    draw_setka()
     t.hideturtle()
     time.sleep(10)
