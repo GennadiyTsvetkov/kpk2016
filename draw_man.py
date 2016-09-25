@@ -1,7 +1,8 @@
 from turtle import Turtle
 
 def init_draw_man():
-    global t, x_current,  y_current
+    global t, x_current,  y_current, drawman_scale
+    drawman_scale=10
     t = Turtle()
     t.penup()
     t.shape('turtle')
@@ -30,17 +31,14 @@ def pen_up():
 
 def on_vector(dx,dy):
     """"Переместить на вектор (x,y)"""
-    global x_current,  y_current
-    t.goto(x_current+dx,y_current+dy)
-    x_current += dx
-    y_current += dy
+    to_point(x_current+dx,  y_current+dy)
 
 def to_point(x,y):
     """"Переместить в точку (x,y)"""
     global x_current,  y_current
     x_current = x
     y_current = y
-    t.goto(x,y)
+    t.goto(x_current*drawman_scale,y_current*drawman_scale)
 
 init_draw_man()
 if __name__ == '__main__':
